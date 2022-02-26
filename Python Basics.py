@@ -10,61 +10,83 @@
 # %%
 # Interger
 i = 1
-print("int i = ", i)
-print("int(i / 1.5) = ", int(i / 1.5), '\n') #can cast any number as an integer, but watch for unexpected results
+print("int i =", i)
+print("int(2.5) =", int(2.5), '\n') #can cast any number as an integer, but watch for unexpected results
 
 # %%
 # Float
-f = 1.0
-print("f = ", f)
-print("f * 1.5 = ", f * 1.5, '\n')
+f = 1.5
+print("float(i) =", float(i))
+print("f =", f)
+print("f + i =", f + i, '\n')
+print("f * 2 =", f * 2, '\n')
 
 # %%
 # Strings
-ss = 'Hello World! Is the "default" message for a beginning application.' # basic string with single quotes
-print("ss = '" + ss + "'")
-sd = "Hello World!... \nIs the \"default\" message for a beginning application." # \escape character example
+# -------------------
+# basic string with single quotes
+ss = 'Hello World! Is the "default" message for a beginning application.'
+print(ss)
+print()
+
+# double quotes and \escape character examples
+sd = "Hello World!... \nIs the \"default\" message for a beginning application."
+
+# %%
+# String concatenation
+# -------------
+# concatenation supported by print function
+# (joins each element with ' ' in between each)
+print(sd, "\n") 
+
+# concat using '+' operator
+# (no space characters added for more precise control)
 print("sd = '" + sd + "'\n")
 
-# simplify output by using an f-string
-sf = f"Hello World! i = {i}; f = {f}\n"
-print(sf)
+# f-strings (formatted strings) make concatenation 
+# much easier for programers to read and write, IMHO.
+print(f"Hello World! i = {i}; f = {f}\n")
+# they also make it easier to format numbers.
+print(f"Fraction '1/3' rounded to 2 decimal places = {1/3:.2f}")
+ratio = 35/3
+print(f"Ratio '{ratio}' converts to '{ratio *100:,.2f}%'")
 
 # %%
 # Lists - 1D array
 l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] # a 1x15 array... also example of zero indexing item addresses
 
-print(f"l = {l}\n")
+print(f"List 'l' = \n{l}\n")
 
 # %%
 import random
 
 l = [i for i in range(15)] # example using list comprehension
-print(f"l = {l}")
+print(f"List 'l' built with range(15) = \n{l}")
 lrandom = [random.randint(0,14) for i in range(15)]
-print(f"lrandom = {lrandom}\n")
+print(f"List 'lrandom' = \n{lrandom}\n")
 
 # %%
 l = [0] * 15 # using list * operator
-print(f"l = {l}")
-print(f"l[14] = {l[14]}\n")
+print(f"List 'l' = \n{l}")
+print(f"List element 'l[14]' = {l[14]}\n")
 
 # %%
 # 2d Lists
 # 15x3 list of 0's
-l2D = [[0]*15] *3 # using list * operator again
-print(f"l2D = {l2D}")
-print(f"l2D[2][14] = {l2D[2][14]}")
-print(f"l2D[-1][-1] = {l2D[-1][-1]}\n") # last elements in each dimension
+l_2d = [[0]*15] *3 # using list * operator again
+print(f"l_2d = \n{l_2d}\n")
+print(f"l_2d[2][14] = {l_2d[2][14]}") # 2D indexing
+print(f"l_2d[-1][-1] = {l_2d[-1][-1]}\n") # last elements in each dimension
 
 # 15x3 list of random numbers
-l2D_random = [[random.randint(0,14) for i in range(15)] for i in range(3)]
-print(f"l2D_random = \n{l2D_random}\n")
+l_2d_random = [[random.randint(0,14) for i in range(15)] for i in range(3)]
+print(f"l_2d_random = \n{l_2d_random}\n")
 
 # %%
 # Tuples
-t = ((("first", "second") *2) * 4) * 2 # can only ever be one-dimensional
-print(f"t = \n{t}\n")
+# can only ever be one-dimensional
+t = ((("first", "second") *2) * 4) * 2 
+print(f"Tuple 't' = \n{t}\n")
 
 # %% [markdown]
 # ## Operators
@@ -72,13 +94,13 @@ print(f"t = \n{t}\n")
 # %%
 # * multiplicative
 print(f"1 * 2 = {1 * 2}\n")
-print(f"2Dlist * 2 = {l2D * 2}\n")
+print(f"l_2d * 2 = {l_2d * 2}\n")
 print(f"(((('first', 'last')) * 2) *2) * 2) = {(((('first', 'last') * 2) *2) * 2)}\n")
 
 # %%
 # + additive
 print(f"1 + 2 = {1 + 2}")
-#print(f"2Dlist + 2 = {l2D + 2}") # cannot concat int into lists
+#print(f"2Dlist + 2 = {l_2d + 2}") # cannot concat int into lists
 print(f"(((('first', 'last')) + (2,)) +(2,)) + (2,)) = \n")
 print(f"{(((('first', 'last') + (2,)) +(2,)) + (2,))}\n")
 
@@ -91,14 +113,13 @@ print(f"integer division 2 // 3 = {2 // 3}\n")
 
 # %%
 # integer modulo operator
-r = 12 % 5
-print(f"12 % 5 = {r}\n")
+r = 12 % 5 # divides 12 by 5 and gives you the remainder
+print(f"Remainder of 12 % 5 = {r}\n")
 
 # days and weeks example
 days = 30
-print(f"days = {days}")
 weeks_i = days // 7
-days_r = days % 7 # divides days by 7 and gives you the remainder
-print(f"using int math = {weeks_i} weeks, {days_r} days")
+days_r = days % 7 
+print(f"Using int math, {days} days = {weeks_i} weeks, {days_r} days")
 weeks_f = days /7
-print(f"using float math = {weeks_f:.2f} weeks\n")
+print(f"Using float math, {days} days = {weeks_f:.2f} weeks\n")
