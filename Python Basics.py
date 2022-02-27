@@ -10,15 +10,16 @@
 # %%
 # Interger
 i = 1
-print("int i =", i)
-print("int(2.5) =", int(2.5), '\n') #can cast any number as an integer, but watch for unexpected results
+i2 = int(2.5) # ingores all decimal point information
+print("i =", i)
+print("i2 =", i2, '\n') #can cast any number as an integer, but watch for unexpected results
 
 # %%
 # Float
-f = 1.5
 print("float(i) =", float(i))
+f = 1.5
 print("f =", f)
-print("f + i =", f + i, '\n')
+print("f + i =", f + i)
 print("f * 2 =", f * 2, '\n')
 
 # %%
@@ -31,6 +32,7 @@ print()
 
 # double quotes and \escape character examples
 sd = "Hello World!... \nIs the \"default\" message for a beginning application."
+print(sd)
 
 # %%
 # String concatenation
@@ -41,7 +43,8 @@ print(sd, "\n")
 
 # concat using '+' operator
 # (no space characters added for more precise control)
-print("sd = '" + sd + "'\n")
+sd_msg = "sd = '" + sd + "'\n"
+print(sd_msg)
 
 # f-strings (formatted strings) make concatenation 
 # much easier for programers to read and write, IMHO.
@@ -53,16 +56,26 @@ print(f"Ratio '{ratio}' converts to '{ratio *100:,.2f}%'")
 
 # %%
 # Lists - 1D array
-l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] # a 1x15 array... also example of zero indexing item addresses
+l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] 
+# a 1x15 array explicitly defined... also example of zero indexing item addresses
 
 print(f"List 'l' = \n{l}\n")
 
 # %%
-import random
+l = []
+for i in range(15):
+  l.append(i)
+print(f"List 'l' built with traditional for i in range(15) = \n{l}")
 
-l = [i for i in range(15)] # example using list comprehension
+# example using list comprehension
+l = [i for i in range(15)] 
 print(f"List 'l' built with range(15) = \n{l}")
-lrandom = [random.randint(0,14) for i in range(15)]
+
+# example of using list comprehension and random
+import random
+lrandom = [
+  random.randint(1,5) for i in range(15)
+]
 print(f"List 'lrandom' = \n{lrandom}\n")
 
 # %%
@@ -76,10 +89,16 @@ print(f"List element 'l[14]' = {l[14]}\n")
 l_2d = [[0]*15] *3 # using list * operator again
 print(f"l_2d = \n{l_2d}\n")
 print(f"l_2d[2][14] = {l_2d[2][14]}") # 2D indexing
-print(f"l_2d[-1][-1] = {l_2d[-1][-1]}\n") # last elements in each dimension
+print(f"l_2d[-1][-1] = {l_2d[-1][-1]}") # last elements in each dimension
+print(f"l_2d[1:] = {l_2d[1:]}\n") # last elements in each dimension
 
 # 15x3 list of random numbers
-l_2d_random = [[random.randint(0,14) for i in range(15)] for i in range(3)]
+l_2d_random = [
+  [
+    random.randint(0,14) for i in range(15)
+  ] 
+  for i in range(3)
+]
 print(f"l_2d_random = \n{l_2d_random}\n")
 
 # %%
@@ -87,6 +106,11 @@ print(f"l_2d_random = \n{l_2d_random}\n")
 # can only ever be one-dimensional
 t = ((("first", "second") *2) * 4) * 2 
 print(f"Tuple 't' = \n{t}\n")
+
+# tuples are immutable (code below generates 
+# "TypeError: 'tuple' object does 
+# not support item assignment")
+t[0] = 'new string'
 
 # %% [markdown]
 # ## Operators
@@ -99,7 +123,7 @@ print(f"(((('first', 'last')) * 2) *2) * 2) = {(((('first', 'last') * 2) *2) * 2
 
 # %%
 # + additive
-print(f"1 + 2 = {1 + 2}")
+print(f"2 + 2 = {2 + 2}")
 #print(f"2Dlist + 2 = {l_2d + 2}") # cannot concat int into lists
 print(f"(((('first', 'last')) + (2,)) +(2,)) + (2,)) = \n")
 print(f"{(((('first', 'last') + (2,)) +(2,)) + (2,))}\n")
@@ -116,6 +140,7 @@ print(f"integer division 2 // 3 = {2 // 3}\n")
 r = 12 % 5 # divides 12 by 5 and gives you the remainder
 print(f"Remainder of 12 % 5 = {r}\n")
 
+# %%
 # days and weeks example
 days = 30
 weeks_i = days // 7
