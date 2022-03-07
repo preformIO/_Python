@@ -37,9 +37,9 @@ print(a_float)
 
 # %% [markdown]
 # ## Data types
-#  * strings = ""
 #  * integers = 1
 #  * floats = 1.0
+#  * strings = ""
 
 
 # %%
