@@ -1,0 +1,332 @@
+# %% [markdown]
+# # Intermediate python
+# 
+#  * Conditionals
+#     * If statements
+#     * Else-if chains
+#  * Loops
+#     * Iterables like range() and list()
+#     * List comprehension
+#  * Functions
+#  * Classes & Methods
+
+# %% [markdown]
+# ## Conditionals
+
+# %%
+# if statements
+if True:
+    # do something
+    pass
+else:
+    # do something else instead
+    pass
+
+# %%
+# if statement based on a random or other calculation
+import random
+randBool = random.choice([True, False])
+if randBool:
+    print(f"randBool = True")
+    pass
+else:
+    print(f"randBool = False")    
+    pass
+
+# %%
+# if - else chain
+randInt = random.choice([None, 0, 1])
+if randInt == 0:
+    print("randInt = 0")
+    pass
+elif randInt == 1:
+    print("randInt = 1")
+    pass
+else: #default
+    print(f"randInt = {randInt}")
+    pass
+
+# %%
+# compound conditionals
+import random
+randBool = random.choice([True, False])
+randInt = random.choice([None, 0, 1])
+if (randInt == 0) or (randBool):
+    print("randInt = 0 OR randBool = True")
+    pass
+elif (randInt == 1) and (randBool == False):
+    print("randInt = 1 AND randBool = False")
+    pass
+else: #default
+    print(f"randInt = {randInt}, randBool = {randBool}")
+    pass
+
+# %% [markdown]
+# ## Loops
+# 
+
+# %%
+# loops with indexes
+print(f"range (12) = {range (12)}")
+
+# example of what range(int) returns
+for i in range(12):
+    print(f"i = {i}")
+    pass
+
+# %%
+import numpy as np
+l = np.random.rand(12)
+print(f"l = \n{l}")
+
+# %%
+# example using range(length(list))
+for i in range(len(l)):
+    print(f"l[{i}] = {l[i]}")
+    pass
+
+# %%
+# loop through items in a iterable
+for f in l: # comparable to C# foreach loops
+    print(f"f = {f}")
+
+# %%
+# loop to create a 2D array
+arr = []
+for i in range(3):
+    arrJ = []
+    for j in range (3):
+        arrJ.append(np.random.rand())
+    arr.append(arrJ)
+print(f"arr = \n{arr}")
+
+# %%
+# List comprehension 1D
+arrListComp = [i for i in range(3)]
+print(f"arrListComp = \n{arrListComp}")
+
+# %%
+# List comprehension 2D
+arrListComp2D = [[j+i for j in range(3)] for i in range(3)]
+print(f"arrListComp = \n{arrListComp2D}")
+
+# %%
+# List comprehension 2D with function
+arrListComp2D = [[np.random.rand() for j in range(3)] for i in range(3)]
+print(f"arrListComp2D = \n{arrListComp2D}")
+
+# %% [markdown]
+# ## Functions
+
+# %% [markdown]
+# ### Basic functions with one argument
+
+# %%
+# define funcName (args)
+def sqrt(num):
+    import math
+    root = None
+    
+    root = math.pow(num, 1/2)
+
+    return root
+    pass
+
+print(f"sqrt(9) = {sqrt(9)}")
+
+# %% [markdown]
+# ### Handling unexpected types
+
+# %%
+sqrt("Hello World!") # this will throw an error
+
+# %%
+# handle unexpected data types
+def sqrt(num):
+    import math
+    root = None
+    
+    try:
+        root = math.pow(num, 1/2)
+    except:
+        print(f"'{num}' is not a real number -- data type = {type(num)}")
+        pass
+
+    return root
+    pass
+
+print(f"sqrt(9) = {sqrt(9)}")
+sqrt("Hello World!") # this will throw an error
+
+# %%
+import math
+
+def percent(num):
+    assert (type(num) == int) or (type(num) == float)
+
+    perc = num * 100
+    
+    perc_s = f"{perc:,.1f}%"
+    
+    return perc_s
+
+[percent(x) for x in range(1,11)]
+# [percent(char) for char in "Hello World!"]
+
+# %%
+# define a fuction by name (parameters go in prentheses = "default values")
+def fncName (parameter1 = "foo", parameter2 = "bar", etc = "baz"):
+    print(f"parameter1 = {parameter1}")
+    print(f"parameter2 = {parameter2}")
+    print(f"etc = {etc}")
+    
+fncName(1, 2, 3)
+fncName(1, 2)
+
+# %%
+fncName(etc = 3)
+
+# %% [markdown]
+# ### *args
+
+# %%
+# args example
+def fncNameWithArgs(*args):
+    for arg in args:
+        if type(arg) == str:
+            print(f"arg = '{arg}'")
+            pass
+        elif type(arg) == int:
+            print(f"arg = {arg}")
+            pass
+        else:
+            print(f"arg of unkown type = {arg}")
+            pass
+        pass
+    
+    return args
+    pass
+
+fncNameWithArgs("1", [2, 4, 6], 3)
+fncNameWithArgs(etc = 5)
+
+# %% [markdown]
+# ### **kwargs
+
+# %%
+# args example
+def fncNameWithKwargs(**kwargs):
+    for key, value in kwargs.items():
+        if type(kwargs[key]) == str:
+            print(f"{key} = '{value}'")
+            pass
+        elif type(kwargs[key]) == int:
+            print(f"{key} = {value}")
+            pass
+        else:
+            print(f"kwarg of unkown type: key = {key}, value = {value}")
+            pass
+        pass
+    
+    return kwargs
+    pass
+
+fncNameWithKwargs(kwarg1 = "1", kwarg2 = 2, kwarg3 = [1,3,5])
+
+# %%
+fncNameWithKwargs(3, kwarg1 = "1", kwarg2 = 2, kwarg3 = [1,3,5])
+
+# %%
+def fncNameWithArgsAndKwargs(*args, **kwargs):
+    for arg in args:
+        if type(arg) == str:
+            print(f"arg = '{arg}'")
+            pass
+        elif type(arg) == int:
+            print(f"arg = {arg}")
+            pass
+        else:
+            print(f"arg of unkown type = {arg}")
+            pass
+        pass
+    
+
+    for key, value in kwargs.items():
+        if type(kwargs[key]) == str:
+            print(f"{key} = '{value}'")
+            pass
+        elif type(kwargs[key]) == int:
+            print(f"{key} = {value}")
+            pass
+        else:
+            print(f"kwarg of unkown type: key = {key}, value = {value}")
+            pass
+        pass
+    
+    return (args, kwargs)
+    pass
+
+fncNameWithArgsAndKwargs(3, kwarg1 = "1", kwarg2 = 2, kwarg3 = [1,3,5])
+
+# %%
+# Floor division (Integer division) review
+print(f"1/4 = {1/4}")
+print(f"1//4 = {1//4}")
+
+print(f"5/4 = {5/4}")
+print(f"5//4 = {5//4}")
+
+print(f"11/4 = {11/4}")
+print(f"11//4 = {11//4}")
+
+# %%
+def Q1(L): # def defines a function, Q1 is the name of the fnc, () accepts arguments
+    
+    q1_i = len(L)//4
+    list_sorted = np.sort(L)
+    q1 = list_sorted[q1_i]
+    
+    print(f"list = {L}")
+    print(f"list_sorted = {list_sorted}")
+    print(f"Q1 of list = {q1}")
+    
+    return q1
+
+data = np.random.rand(12)
+Q1(data)
+
+# %% [markdown]
+# ## Classes & Methods
+
+# %%
+# 'class' declares a class, 'FinancialPortfolio' is its name
+class FinancialPortfolio: 
+    def __init__(self, name = "", cash = 0, bonds = 0, stocks = 0, alternatives = 0):
+        print(f"FinancialPortfolio class instance created = {self}")
+        self.name   = name
+        self.cash   = cash
+        self.bonds  = bonds
+        self.stocks = stocks
+        self.alts   = alternatives
+        
+        return
+    
+    def Print(self):
+        print(f'{self.name}\'s Portfolio :: printing.')
+        print(f'        cash = ${self.cash:,.2f}')
+        print(f'       bonds = ${self.bonds:,.2f}')
+        print(f'      stocks = ${self.stocks:,.2f}')
+        print(f'        alts = ${self.alts:,.2f}')
+        
+    def PrintNetWorth(self):
+        net = self.cash + self.bonds + self.stocks + self.alts
+        print(f'{self.name}\'s Portfolio net worth = ${net}')    
+
+    pass
+
+# create an instance of the class
+portfolio = FinancialPortfolio("Anisha", -10, 1000, 3000000, 15)
+
+# call some of its functions
+portfolio.Print()
+portfolio.PrintNetWorth()
