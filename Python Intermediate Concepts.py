@@ -320,7 +320,7 @@ class FinancialPortfolio:
         
     def PrintNetWorth(self):
         net = self.cash + self.bonds + self.stocks + self.alts
-        print(f'{self.name}\'s Portfolio net worth = ${net}')    
+        print(f'{self.name}\'s Portfolio net worth = ${net:,.2f}')    
 
     pass
 
