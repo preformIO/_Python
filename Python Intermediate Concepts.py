@@ -16,7 +16,7 @@
 # %%
 # if statements
 if True:
-    # do something
+    # do something if condition is true
     pass
 else:
     # do something else instead
@@ -27,20 +27,23 @@ else:
 import random
 randBool = random.choice([True, False])
 if randBool:
-    print(f"randBool = True")
+    print(f"randBool is true")
     pass
 else:
-    print(f"randBool = False")    
+    print(f"randBool is false")    
     pass
 
 # %%
 # if - else chain
-randInt = random.choice([None, 0, 1])
+randInt = random.choice([None, 0, 1, 2])
 if randInt == 0:
-    print("randInt = 0")
+    print("randInt is zero")
     pass
 elif randInt == 1:
-    print("randInt = 1")
+    print("randInt is one")
+    pass
+elif randInt == 2:
+    print("randInt is two")
     pass
 else: #default
     print(f"randInt = {randInt}")
@@ -52,10 +55,10 @@ import random
 randBool = random.choice([True, False])
 randInt = random.choice([None, 0, 1])
 if (randInt == 0) or (randBool):
-    print("randInt = 0 OR randBool = True")
+    print("randInt is zero OR randBool is true")
     pass
-elif (randInt == 1) and (randBool == False):
-    print("randInt = 1 AND randBool = False")
+elif (randInt == 1) and (not randBool):
+    print("randInt is one AND randBool is false")
     pass
 else: #default
     print(f"randInt = {randInt}, randBool = {randBool}")
@@ -87,8 +90,8 @@ for i in range(len(l)):
 
 # %%
 # loop through items in a iterable
-for f in l: # comparable to C# foreach loops
-    print(f"f = {f}")
+for float_val in l: # comparable to C# foreach loops
+    print(f"float_val = {float_val}")
 
 # %%
 # loop to create a 2D array
@@ -125,7 +128,6 @@ print(f"arrListComp2D = \n{arrListComp2D}")
 # define funcName (args)
 def sqrt(num):
     import math
-    root = None
     
     root = math.pow(num, 1/2)
 
@@ -156,22 +158,25 @@ def sqrt(num):
     pass
 
 print(f"sqrt(9) = {sqrt(9)}")
-sqrt("Hello World!") # this will throw an error
+sqrt("Hello World!") # this will no longer throw an error
 
 # %%
 import math
 
-def percent(num):
+def percentAsString(num):
     assert (type(num) == int) or (type(num) == float)
 
     perc = num * 100
     
-    perc_s = f"{perc:,.1f}%"
+    perc_string = f"{perc:,.1f}%"
     
-    return perc_s
+    return perc_string
 
-[percent(x) for x in range(1,11)]
-# [percent(char) for char in "Hello World!"]
+[percentAsString(x) for x in range(1,11)]
+
+# %%
+# assert trigering example
+[percentAsString(char) for char in "Hello World!"] # will throw an error
 
 # %%
 # define a fuction by name (parameters go in prentheses = "default values")
@@ -182,15 +187,17 @@ def fncName (parameter1 = "foo", parameter2 = "bar", etc = "baz"):
     
 fncName(1, 2, 3)
 fncName(1, 2)
+fncName()
 
 # %%
+# example of passing a named parameter
 fncName(etc = 3)
 
 # %% [markdown]
 # ### *args
 
 # %%
-# args example
+# positional arguments (*args) example
 def fncNameWithArgs(*args):
     for arg in args:
         if type(arg) == str:
@@ -200,7 +207,7 @@ def fncNameWithArgs(*args):
             print(f"arg = {arg}")
             pass
         else:
-            print(f"arg of unkown type = {arg}")
+            print(f"arg of unkown type = {type(arg)}, value = {arg}")
             pass
         pass
     
@@ -208,23 +215,25 @@ def fncNameWithArgs(*args):
     pass
 
 fncNameWithArgs("1", [2, 4, 6], 3)
+# %%
+# *args does not catch keword arguments
 fncNameWithArgs(etc = 5)
 
 # %% [markdown]
 # ### **kwargs
 
 # %%
-# args example
+# keword arguments (**kwargs) example
 def fncNameWithKwargs(**kwargs):
     for key, value in kwargs.items():
-        if type(kwargs[key]) == str:
+        if type(value) == str:
             print(f"{key} = '{value}'")
             pass
-        elif type(kwargs[key]) == int:
+        elif type(value) == int:
             print(f"{key} = {value}")
             pass
         else:
-            print(f"kwarg of unkown type: key = {key}, value = {value}")
+            print(f"kwarg of unkown type: {key} = {value}")
             pass
         pass
     
@@ -234,9 +243,12 @@ def fncNameWithKwargs(**kwargs):
 fncNameWithKwargs(kwarg1 = "1", kwarg2 = 2, kwarg3 = [1,3,5])
 
 # %%
+# **kwargs does NOT capture positional arguments, however
 fncNameWithKwargs(3, kwarg1 = "1", kwarg2 = 2, kwarg3 = [1,3,5])
 
 # %%
+# In order to make fully robust functions, 
+# you have to capture *args AND **kwargs
 def fncNameWithArgsAndKwargs(*args, **kwargs):
     for arg in args:
         if type(arg) == str:
@@ -252,14 +264,14 @@ def fncNameWithArgsAndKwargs(*args, **kwargs):
     
 
     for key, value in kwargs.items():
-        if type(kwargs[key]) == str:
+        if type(value) == str:
             print(f"{key} = '{value}'")
             pass
-        elif type(kwargs[key]) == int:
+        elif type(value) == int:
             print(f"{key} = {value}")
             pass
         else:
-            print(f"kwarg of unkown type: key = {key}, value = {value}")
+            print(f"kwarg of unkown type: {key} = {value}")
             pass
         pass
     
