@@ -81,6 +81,7 @@ print(sd, "\n")
 sd_msg = "sd = '" + sd + "'\n"
 print(sd_msg)
 
+# %% 
 # f-strings (formatted strings) make concatenation 
 # much easier for programers to read and write, IMHO.
 print(f"Hello World! i = {i}; f = {f}\n")
@@ -99,21 +100,21 @@ print(f"List 'l' = \n{l}\n")
 
 # %%
 # example of building a list by appending items to an empty list
-l = []
+l_for = []
 for i in range(15):
-  l.append(i)
-print(f"List 'l' built with traditional for i in range(15) = \n{l}")
+  l_for.append(i)
+print(f"List 'l_for' built with traditional for i in range(15) = \n{l_for}\n")
 
 # example of building a list using list comprehension
-l = [i for i in range(15)] 
-print(f"List 'l' built with range(15) = \n{l}")
+l_list_comprehension = [i for i in range(15)] 
+print(f"List 'l_list_comprehension' built with list comprehension range(15) = \n{l_list_comprehension}\n")
 
 # using list comprehension and random
 import random
-lrandom = [
-  random.randint(1,5) for i in range(15)
+l_random = [
+  random.randint(1,5) for _ in range(15)
 ]
-print(f"List 'lrandom' = \n{lrandom}\n")
+print(f"List 'l_random' = \n{l_random}\n")
 
 # %%
 # using list * operator
@@ -133,7 +134,7 @@ print(f"l_2d[1:] = {l_2d[1:]}\n") # last elements in each dimension
 # 15x3 list of random numbers
 l_2d_random = [
   [
-    random.randint(0,14) for i in range(15)
+    random.randint(0,14) for j in range(15)
   ] 
   for i in range(3)
 ]
@@ -161,9 +162,9 @@ print(f"(((('first', 'last')) * 2) *2) * 2) = {(((('first', 'last') * 2) *2) * 2
 
 # %%
 # + additive
-print(f"2 + 2 = {2 + 2}")
+print(f"2 + 2 = {2 + 2}\n")
 #print(f"2Dlist + 2 = {l_2d + 2}") # cannot concat int into lists
-print(f"(((('first', 'last')) + (2,)) +(2,)) + (2,)) = \n")
+print(f"(((('first', 'last')) + (2,)) +(2,)) + (2,)) =")
 print(f"{(((('first', 'last') + (2,)) +(2,)) + (2,))}\n")
 
 # %%
