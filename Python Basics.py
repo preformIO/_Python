@@ -157,12 +157,14 @@ t[0] = 'new string'
 # %%
 # * multiplicative
 print(f"1 * 2 = {1 * 2}\n")
+print(f"1.5 * 2.75 = {1.5 * 2.75}\n")
 print(f"l_2d * 2 = {l_2d * 2}\n")
 print(f"(((('first', 'last')) * 2) *2) * 2) = {(((('first', 'last') * 2) *2) * 2)}\n")
 
 # %%
 # + additive
 print(f"2 + 2 = {2 + 2}\n")
+print(f"2.50 + 2.75 = {2.50 + 2.75}\n")
 #print(f"2Dlist + 2 = {l_2d + 2}") # cannot concat int into lists
 print(f"(((('first', 'last')) + (2,)) +(2,)) + (2,)) =")
 print(f"{(((('first', 'last') + (2,)) +(2,)) + (2,))}\n")
